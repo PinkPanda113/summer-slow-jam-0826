@@ -5,6 +5,7 @@ using UnityEngine.InputSystem;
 
 public class PlayerInteract : MonoBehaviour
 {
+    public event Action<ObjectsInteractable> OnInteraction;
    
     void Update()
     {
@@ -12,6 +13,12 @@ public class PlayerInteract : MonoBehaviour
         {
             Vector3 interactRange = new Vector3(2f, 2f, 2f);
             Collider[] colliderArray = Physics.OverlapBox(transform.position, interactRange);
+            ObjectsInteractable interactable1= GetInteractableObject();
+            if (interactable1 != null)
+            {
+                interactable1.Interact();
+                OnInteraction?.Invoke(interactable1);
+            }
             foreach (Collider collider in colliderArray)
             {
                 if (collider.TryGetComponent (out ObjectsInteractable interactable))
