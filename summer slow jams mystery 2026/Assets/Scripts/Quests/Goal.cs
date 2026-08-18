@@ -2,20 +2,21 @@ using UnityEngine;
 
 public class Goal
 {
-    public string description { get; set; }
-    public bool isCompleted { get; set; }
-    public bool hasInteracted { get; set; }
+    public Quest Quest { get; set; }
+    public string Description { get; set; }
+    public bool IsCompleted { get; set; }
+    public bool HasInteracted { get; set; }
 
     public virtual void Initialize()
     {
-        this.description = description;
-        isCompleted = false;
-        hasInteracted = false;
+        this.Description = Description;
+        IsCompleted = false;
+        HasInteracted = false;
     }
 
     public void Evaluate()
     {
-        if (hasInteracted == true)
+        if (HasInteracted == true)
         {
             Complete();
         }
@@ -23,10 +24,12 @@ public class Goal
 
     public void Interact()
     {
-        hasInteracted = true;
+        HasInteracted = true;
     }
     public void Complete()
     {
-        isCompleted = true;
+        Quest.CheckGoals();
+        IsCompleted = true;
+        Debug.Log("Goal completed: " + Description);
     }
 }

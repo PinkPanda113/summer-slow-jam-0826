@@ -4,7 +4,7 @@ public class ObjectsInteractable : MonoBehaviour
 {
     [SerializeField] private string interactText;
     [SerializeField] public int id; 
-    public void Interact()
+    public virtual void Interact()
     {
         Debug.Log("Interacted with: " + gameObject.name);
     }
