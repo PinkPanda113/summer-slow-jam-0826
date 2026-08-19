@@ -5,6 +5,7 @@ public class QuestGiver : NPC
     public bool AssignedQuest { get; set; } 
     public bool QuestCompleted { get; set; }
     [SerializeField] private GameObject Quests;
+    [SerializeField] private Quest quest; //?
     [SerializeField] private string questType;
     public Quest Quest { get; set; }
 
@@ -34,20 +35,24 @@ public class QuestGiver : NPC
     {
         // Logic to assign the quest to the player
         AssignedQuest = true;
-        Quest = (Quest)Quests.AddComponent(System.Type.GetType(questType)); // Assuming Quest is a MonoBehaviour, otherwise adjust accordingly
+        //Quest = (Quest)Quests.AddComponent(System.Type.GetType(questType)); // Assuming Quest is a MonoBehaviour, otherwise adjust accordingly
+        //Quest = (Quest)Quests.Set(playerInteract);
+        
     }
 
     void CheckQuest()
     {
-        if (Quest.IsCompleted)
+        if (quest.IsCompleted)
         {
             Quest.GiveWordReward();
             QuestCompleted = true;
             AssignedQuest = false;
+            Debug.Log("Quest complited?");
             // DialogSystem.Instance.AddNewDialogue(new string[]{"Thanks for that! Here's the words!", "More dialogue"}, name);
         }
         else
         {
+            Debug.Log("You did not complited the quest");
             // DialogSystem.Instance.AddNewDialogue(new string[]{"Do you have the book? I'm still waiting!", "Go find it"}, name);
         }
     }
