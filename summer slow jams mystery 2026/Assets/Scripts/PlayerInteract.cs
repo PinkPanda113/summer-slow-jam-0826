@@ -5,19 +5,17 @@ using UnityEngine.InputSystem;
 
 public class PlayerInteract : MonoBehaviour
 {
+    public event Action<ObjectsInteractable> OnInteraction;
    
     void Update()
     {
         if (Keyboard.current.eKey.wasPressedThisFrame)
         {
-            Vector3 interactRange = new Vector3(2f, 2f, 2f);
-            Collider[] colliderArray = Physics.OverlapBox(transform.position, interactRange);
-            foreach (Collider collider in colliderArray)
+            ObjectsInteractable interactable1= GetInteractableObject();
+            if (interactable1 != null)
             {
-                if (collider.TryGetComponent (out ObjectsInteractable interactable))
-                {
-                    interactable.Interact();
-                }
+                interactable1.Interact();
+                OnInteraction?.Invoke(interactable1);
             }
         }
 
@@ -25,7 +23,7 @@ public class PlayerInteract : MonoBehaviour
 
     public ObjectsInteractable GetInteractableObject()
     {
-       List<ObjectsInteractable> interactableObjectsList = new List<ObjectsInteractable>();
+        List<ObjectsInteractable> interactableObjectsList = new List<ObjectsInteractable>();
         Vector3 interactRange = new Vector3(2f, 2f, 2f);
         Collider[] colliderArray = Physics.OverlapBox(transform.position, interactRange);
         foreach (Collider collider in colliderArray)
