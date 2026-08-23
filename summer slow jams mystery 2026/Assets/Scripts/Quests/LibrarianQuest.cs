@@ -25,11 +25,17 @@ public class LibrarianQuest : Quest
         Debug.Log("Librarian's Quest playerInteract= "+ playerInteract);
         Debug.Log("Is null?" + (playerInteract == null));
 
-        goals.Add(new CollectBookGoal(this, playerInteract, 0, "Collect this book", false, false));
-        //goals.Add(new CollectBookGoal(this, playerInteract, 1, "Collect this book", false, false));
+    }
 
+    public override void Activate()
+    {
+        if (goals.Count > 0)
+        {
+            return;
+        }
+
+        goals.Add(new CollectBookGoal(this, playerInteract, 1, "Collect this book", false, false));
         goals.ForEach(goal => goal.Initialize());
-        
     }
 
 }

@@ -9,9 +9,15 @@ public class PlayerInteractUI : MonoBehaviour
 
    private void Update()
    {
-      if (playerInteract.GetInteractableObject() != null)
+      if (playerInteract == null || containerGameObject == null || interactTextMeshProUGUI == null)
       {
-         ShowContainer(playerInteract.GetInteractableObject());
+         return;
+      }
+
+      ObjectsInteractable interactable = playerInteract.GetInteractableObject();
+      if (interactable != null)
+      {
+         ShowContainer(interactable);
       }
       else
       {
