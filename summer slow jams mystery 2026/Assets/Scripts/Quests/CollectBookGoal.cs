@@ -27,15 +27,18 @@ public class CollectBookGoal : Goal
             Debug.LogError("CollectBookGoal: playerInteract is null.");
             return;
         }
-        playerInteract.OnInteraction += Bookcollected; // Subscribe to the OnInteraction event
+        playerInteract.OnInteraction += BookCollected; // Subscribe to the OnInteraction event
     }
 
-    void Bookcollected(ObjectsInteractable book)
+    void BookCollected(ObjectsInteractable book)
     {
-        if (book.id == this.BookId)
+        Debug.Log("Received interaction wwith: " + book.name);
+        Debug.Log("Book ID: " + book.id + "| Required ID: " + BookId);
+        if (book.id == BookId)
         {
+            HasInteracted = true;
             Evaluate();
-            Debug.Log("Book collected: " + book.gameObject.name);
+            Debug.Log("Book collected: " + book.gameObject.name + IsCompleted + HasInteracted);
         }
     }
 

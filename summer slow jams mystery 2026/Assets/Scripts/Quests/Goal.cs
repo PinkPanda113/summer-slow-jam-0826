@@ -28,8 +28,9 @@ public class Goal
     }
     public void Complete()
     {
-        Quest.CheckGoals();
+        
         IsCompleted = true;
+        Quest.CheckGoals();
         Debug.Log("Goal completed: " + Description);
     }
 }

@@ -11,6 +11,10 @@ public class Quest : MonoBehaviour
     public string WordReward {get; set;}
     public bool IsCompleted {get; set;} 
 
+    public virtual void Activate()
+    {
+    }
+
     public void CheckGoals()
     {
         IsCompleted = goals.All(goal => goal.IsCompleted);

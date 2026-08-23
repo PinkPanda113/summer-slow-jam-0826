@@ -9,13 +9,13 @@ public class PlayerInteract : MonoBehaviour
    
     void Update()
     {
-        if (Keyboard.current.eKey.wasPressedThisFrame)
+        if (Keyboard.current != null && Keyboard.current.eKey.wasPressedThisFrame)
         {
-            ObjectsInteractable interactable1= GetInteractableObject();
-            if (interactable1 != null)
+            ObjectsInteractable interactable = GetInteractableObject();
+            if (interactable != null)
             {
-                interactable1.Interact();
-                OnInteraction?.Invoke(interactable1);
+                interactable.Interact();
+                OnInteraction?.Invoke(interactable);
             }
         }
 
