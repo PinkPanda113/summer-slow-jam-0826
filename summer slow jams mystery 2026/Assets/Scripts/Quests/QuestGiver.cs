@@ -30,7 +30,7 @@ public class QuestGiver : NPC
             CheckQuest();
             break;
             case QuestState.Completed:
-            // DialogSystem.Instance.AddNewDialogue(new string[]{"Thanks for help"}, name);
+            DialogueSystem.Instance.AddNewDialogue(new string[]{"Thanks for help"}, name);
             Debug.Log("Player has completed the quest.");
             break;
         }
@@ -103,12 +103,12 @@ public class QuestGiver : NPC
             // QuestCompleted = true;
             // AssignedQuest = false;
             Debug.Log("Quest completed!");
-            // DialogSystem.Instance.AddNewDialogue(new string[]{"Thanks for that! Here's the words!", "More dialogue"}, name);
+            DialogueSystem.Instance.AddNewDialogue(new string[]{"Thanks for that! Here's the words!", "More dialogue"}, name);
         }
         else
         {
             Debug.Log("You did not complited the quest");
-            // DialogSystem.Instance.AddNewDialogue(new string[]{"Do you have the book? I'm still waiting!", "Go find it"}, name);
+            DialogueSystem.Instance.AddNewDialogue(new string[]{"Do you have the book? I'm still waiting!", "Go find it"}, name);
         }
     }
 }
